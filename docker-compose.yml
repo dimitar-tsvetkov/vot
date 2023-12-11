@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 0000
+      MYSQL_DATABASE: dimitar
+      MYSQL_USER: dimitar
+      MYSQL_PASSWORD: 0000
+  web:
+    image: web
+    depends_on:
+      - database
+    ports:
+      - 80:80
+  rabbitmq:
+    image: rabbitmq:3.8-management
+    environment:
+      RABBITMQ_DEFAULT_USER: "dimitar"
+      RABBITMQ_DEFAULT_PASS: "0000"
+    ports:
+      - 15672:15672
